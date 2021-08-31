@@ -1,0 +1,44 @@
+<h4 class="tex-center">Cadastre-se e mostre seu pet ao mundo!</h4>
+
+<form class="form mt-4" [formGroup]="novoUsuarioForm" (submit)="cadastrar()" autocomplete="off">
+
+    <div class="form-group">
+        <input placeholder="E-mail" class="form-control" formControlName="email">
+        <app-messages *ngIf="novoUsuarioForm.get('email')?.errors?.email && novoUsuarioForm.get('email')?.touched"
+            mensagem="E-mail deve ser corretamente!">
+        </app-messages>
+
+        <app-messages *ngIf="novoUsuarioForm.get('email')?.errors?.required && novoUsuarioForm.get('email')?.touched"
+            mensagem="E-mail deve ser obrigatório!">
+        </app-messages>
+    </div>
+
+    <div class="form-group">
+        <input placeholder="Nome Completo" class="form-control" formControlName="fullName">
+        <app-messages *ngIf="novoUsuarioForm.get('fullName')?.errors && 
+        novoUsuarioForm.get('fullName')?.touched" mensagem="Nome incorreto"></app-messages>
+    </div>
+
+    <div class="form-group">
+        <input placeholder="Usuario" class="form-control" formControlName="userName" [autocomplete]="false">
+        <app-messages *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo"
+            mensagem="Campo usuario deve ser letra minuscula">
+        </app-messages>
+        <app-messages *ngIf="novoUsuarioForm.get('userName')?.errors?.usuarioExistente"
+            mensagem="Usuário já existente!"></app-messages>
+    </div>
+    <div class="form-group">
+        <input placeholder="Senha" class="form-control" type="password" formControlName="password">
+        <app-messages *ngIf="novoUsuarioForm?.errors?.senhaIgualUsuario" mensagem="Senha não pode ser igual ao usuário">
+        </app-messages>
+    </div>
+    <div class="form-group">
+        <input placeholder="Confirmar Senha" class="form-control" type="password" formControlName="confirmPassword">
+        <app-messages *ngIf="novoUsuarioForm?.errors?.senhasDiferentes" mensagem="Senhas não conferem!">
+        </app-messages>
+
+    </div>
+    <button class="btn btn-primary ">Cadastrar</button>
+</form>
+
+<p>Já possuí conta? <a [routerLink]="['']">Acesse sua conta!</a></p>
