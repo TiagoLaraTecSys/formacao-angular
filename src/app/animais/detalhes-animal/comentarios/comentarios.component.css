@@ -1,0 +1,9 @@
+.comentario-list {
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.comentario {
+  background-color: blue;
+  color: white;
+}
